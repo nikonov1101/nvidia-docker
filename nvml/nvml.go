@@ -117,6 +117,7 @@ type ProcessInfo struct {
 type DeviceStatus struct {
 	Power       *uint
 	Temperature *uint
+	FanSpeed    *uint
 	Utilization UtilizationInfo
 	Memory      MemoryInfo
 	Clocks      ClockInfo
@@ -298,10 +299,13 @@ func (d *Device) Status() (status *DeviceStatus, err error) {
 	assert(err)
 	pcirx, pcitx, err := d.deviceGetPcieThroughput()
 	assert(err)
+	fanSpeed, err := d.deviceGetFanSpeed()
+	assert(err)
 
 	status = &DeviceStatus{
 		Power:       power,
-		Temperature: temp, // °C
+		Temperature: temp,     // °C
+		FanSpeed:    fanSpeed, // %
 		Utilization: UtilizationInfo{
 			GPU:     ugpu, // %
 			Memory:  umem, // %

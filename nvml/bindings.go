@@ -207,6 +207,16 @@ func (h handle) deviceGetTemperature() (*uint, error) {
 	return uintPtr(temp), errorString(r)
 }
 
+func (h handle) deviceGetFanSpeed() (*uint, error) {
+	var speed C.uint
+	r := C.nvmlDeviceGetFanSpeed(h.dev, &speed)
+	if r == C.NVML_ERROR_NOT_SUPPORTED {
+		return nil, nil
+	}
+
+	return uintPtr(speed), errorString(r)
+}
+
 func (h handle) deviceGetUtilizationRates() (*uint, *uint, error) {
 	var usage C.nvmlUtilization_t
 
