@@ -3,6 +3,7 @@
 package nvml
 
 // #cgo LDFLAGS: -ldl -Wl,--unresolved-symbols=ignore-in-object-files
+// #cgo CFLAGS: -I${SRCDIR}/../build/include/
 // #include "nvml_dl.h"
 import "C"
 

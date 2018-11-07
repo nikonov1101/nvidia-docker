@@ -3,6 +3,7 @@
 package cuda
 
 // #cgo LDFLAGS: -L${SRCDIR}/../build/lib -lcudart_static -ldl -lrt
+// #cgo CFLAGS: -I${SRCDIR}/../build/include
 // #include <stdlib.h>
 // #include <cuda_runtime_api.h>
 import "C"
